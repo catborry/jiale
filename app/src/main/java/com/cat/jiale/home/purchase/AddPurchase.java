@@ -13,6 +13,5 @@ public class AddPurchase extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_purchase);
-        Log.e("s","s");
     }
 }
