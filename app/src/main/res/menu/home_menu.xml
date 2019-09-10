@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/add" android:title="添加进货单" />
+<!--    <item android:id="@+id/updata" android:title="修改进货单"/>-->
+<!--    <item android:id="@+id/delete" android:title="删除进货单"/>-->
+</menu>
