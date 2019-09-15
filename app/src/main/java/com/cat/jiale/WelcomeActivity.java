@@ -6,10 +6,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
+import android.widget.Toast;
 
 import com.cat.jiale.home.HomePage;
 
@@ -25,8 +28,8 @@ public class WelcomeActivity extends AppCompatActivity {
 //                WindowManager.LayoutParams.FLAG_FULLSCREEN);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        File file=getStorageDir();
         handler.sendEmptyMessageDelayed(0,3000);
-        File file=new File("");
     }
 //设置沉浸式
     @Override
@@ -53,5 +56,17 @@ public class WelcomeActivity extends AppCompatActivity {
     public void getHome(){
         startActivity(new Intent(WelcomeActivity.this, HomePage.class));
         finish();
+    }
+    //获取图片目录
+    public File getStorageDir(){
+//        File file=new File(Environment.getExternalStorageDirectory(),"jiale");
+//        if(!file.mkdir()) {
+//            Toast.makeText(this,",目录已存在",Toast.LENGTH_LONG).show();
+//        }else{
+//            Toast.makeText(this,"目录已创建",Toast.LENGTH_LONG).show();
+//        }
+//        Log.d("目录信息",file.toString());
+//        return file;
+        return null;
     }
 }
