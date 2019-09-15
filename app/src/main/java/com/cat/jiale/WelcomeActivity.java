@@ -13,6 +13,9 @@ import android.view.Window;
 
 import com.cat.jiale.home.HomePage;
 
+import java.io.File;
+
+
 public class WelcomeActivity extends AppCompatActivity {
 
     @Override
@@ -23,6 +26,7 @@ public class WelcomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         handler.sendEmptyMessageDelayed(0,3000);
+        File file=new File("");
     }
 //设置沉浸式
     @Override
