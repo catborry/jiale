@@ -1,12 +1,13 @@
 package com.cat.jiale.store;
 
-import android.os.Environment;
-import android.util.Log;
-import android.widget.Toast;
 
-import com.cat.jiale.WelcomeActivity;
+import android.graphics.Bitmap;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 //存储处理类
 public class SDCard {
@@ -31,6 +32,15 @@ public class SDCard {
         }
         return false;
     }
-
+    //保存文件
+    public boolean saveFile(File file, Bitmap bitmap) throws IOException {
+        FileOutputStream fileOutputStream=new FileOutputStream(file);
+        //100代表不压缩
+        bitmap.compress(Bitmap.CompressFormat.JPEG,100,fileOutputStream);
+//        fileOutputStream.write(bitmap.getNinePatchChunk());
+        fileOutputStream.flush();
+        fileOutputStream.close();
+        return true;
+    }
 
 }
