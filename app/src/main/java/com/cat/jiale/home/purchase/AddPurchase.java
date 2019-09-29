@@ -30,13 +30,10 @@ public class AddPurchase extends AppCompatActivity {
         setContentView(R.layout.activity_add_purchase);
         imageView=findViewById(R.id.imgnow);
         button=findViewById(R.id.img);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent it = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                startActivityForResult(it,Activity.DEFAULT_KEYS_DIALER);
+        button.setOnClickListener(v -> {
+            Intent it = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            startActivityForResult(it,Activity.DEFAULT_KEYS_DIALER);
 
-            }
         });
         imageView.setOnClickListener(l->{
            Intent intent=new Intent(this,ImgLook.class);
