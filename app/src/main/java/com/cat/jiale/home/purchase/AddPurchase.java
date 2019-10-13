@@ -55,6 +55,7 @@ public class AddPurchase extends AppCompatActivity {
         imageView=findViewById(R.id.imgnow);
         button=findViewById(R.id.img);
         sdCard=new SDCard();
+        //点击拍照
         button.setOnClickListener(v -> {
             //大于android6.0
             if(Build.VERSION.SDK_INT >=Build.VERSION_CODES.N){
