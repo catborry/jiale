@@ -15,12 +15,13 @@ import android.view.Window;
 import android.widget.Toast;
 
 import com.cat.jiale.home.HomePage;
+import com.cat.jiale.store.SDCard;
 
 import java.io.File;
 
 
 public class WelcomeActivity extends AppCompatActivity {
-
+    SDCard sdCard=null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -67,6 +68,13 @@ public class WelcomeActivity extends AppCompatActivity {
 //        }
 //        Log.d("目录信息",file.toString());
 //        return file;
+        sdCard=new SDCard();
+        boolean ready = sdCard.ready();
+        if(!ready){
+         Toast.makeText(this,"未检测到内存卡,请联系我",Toast.LENGTH_LONG).show();
+        }else{
+            Toast.makeText(this,"初始化完成,文件夹已创建",Toast.LENGTH_LONG).show();
+        }
         return null;
     }
 }

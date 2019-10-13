@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.cat.jiale">
 
     <application
@@ -8,7 +9,27 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        tools:ignore="GoogleAppIndexingWarning">
+<!--        name 因为我们使用的是V4包下的FileProvider ，所以name的值就是V4包下FileProvider的相对路径值。-->
+<!--        当然我们也可以自定义类继承于FileProvider，这时候name的值就是我们自定义类的相对路径了-->
+<!--        authorities 可以理解为标识符，是我们自己自定义的。我们代码中调用getUriForFile方法获取Uri时第二个参数就是这里我们定义的值。-->
+<!--        exported 代表是否可以输出被外部程序使用，填false就行。-->
+<!--        android:grantUriPermissions 是否允许为文件授予临时权限，必须为true-->
+
+<!--        <meta-data>标签里配置的内容是用来指定那个文件夹下的文件是可被共享的。-->
+<!--        name 为固定的值android.support.FILE_PROVIDER_PATHS。-->
+<!--        path 是对应的xml文件路径，@xml/file_paths代表在xml文件下的file_paths文件。-->
+<!--        android:name="android.support.v4.content.FileProvider"-->
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.cat.jiale.home.purchase.AddPurchase"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
         <activity android:name=".home.purchase.ImgLook"></activity>
         <activity android:name=".home.purchase.AddPurchase" />
         <activity
@@ -23,6 +44,7 @@
         </activity>
     </application>
 
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <!--  因为拍照需要写入文件 所以需要申请读取内存的权限 -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-
 </manifest>
