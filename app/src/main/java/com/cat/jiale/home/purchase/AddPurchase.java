@@ -38,6 +38,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class AddPurchase extends AppCompatActivity {
     private Button button;
@@ -47,6 +49,7 @@ public class AddPurchase extends AppCompatActivity {
     public static File tempFile;
     private  SDCard sdCard;
     Bitmap bitmap;
+    String imgName;
     private static final int REQUEST_PERMISSION_CODE = 101;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +60,7 @@ public class AddPurchase extends AppCompatActivity {
         sdCard=new SDCard();
         //点击拍照
         button.setOnClickListener(v -> {
+            imgName=saveImageName();
             //大于android6.0
             if(Build.VERSION.SDK_INT >=Build.VERSION_CODES.N){
                 Toast.makeText(this,"6.0及以上",Toast.LENGTH_LONG).show();
@@ -79,7 +83,7 @@ public class AddPurchase extends AppCompatActivity {
         });
         imageView.setOnClickListener(l->{
            Intent intent=new Intent(this,ImgLook.class);
-//           intent.putExtra("img",bitmap);
+           intent.putExtra("imgName",imgName);
            startActivity(intent);
         });
         save=findViewById(R.id.save);
@@ -146,7 +150,7 @@ public class AddPurchase extends AppCompatActivity {
     //拍照
     private void takePhote(){
         //创建存储照片文件
-        File file=new File(sdCard.getHome(),"first.png");
+        File file=new File(sdCard.getHome(),imgName+".png");
         if(!file.exists()){
             try {
                 file.createNewFile();
@@ -164,7 +168,13 @@ public class AddPurchase extends AppCompatActivity {
         intent.putExtra(MediaStore.EXTRA_OUTPUT, mUri);
         startActivityForResult(intent, 101);
         }
-
+    //根据时间设置图片名字
+    public String saveImageName(){
+        Date date=new Date();
+        SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyyMMddHHmmss");
+        String time = simpleDateFormat.format(date);
+        return time;
+    }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -173,7 +183,7 @@ public class AddPurchase extends AppCompatActivity {
 //            bitmap = (Bitmap) bundle.get("data");
 //            imageView.setImageBitmap(bitmap);
             try {
-                FileInputStream is=new FileInputStream(sdCard.getHome()+"/first.png");
+                FileInputStream is=new FileInputStream(sdCard.getHome()+"/"+imgName+".png");
                 bitmap = BitmapFactory.decodeStream(is);
                 imageView.setImageBitmap(bitmap);
             } catch (FileNotFoundException e) {

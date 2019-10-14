@@ -23,12 +23,12 @@ public class ImgLook extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_img_look);
         imageView=findViewById(R.id.imgBig);
-//            Intent intent=getIntent();
-//            Bitmap bitmap=intent.getParcelableExtra("img");
+        Intent intent=getIntent();
+        String imgName=intent.getStringExtra("imgName");
         SDCard sdCard=new SDCard();
         FileInputStream is= null;
         try {
-            is = new FileInputStream(sdCard.getHome()+"/first.png");
+            is = new FileInputStream(sdCard.getHome()+"/"+imgName+".png");
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
