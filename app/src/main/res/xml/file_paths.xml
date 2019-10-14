@@ -1,0 +1,20 @@
+<paths xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--files-path  相当于 getFilesDir（）-->
+    <files-path name="my_images" path="images"/>
+    <!--cache-path  相当于 getCacheDir（）-->
+    <cache-path name="lalala" path="cache_image"/>
+    <!--external-path  相当于 Environment.getExternalStorageDirectory()-->
+    <external-path  name="hahaha" path="comeOn"/>
+    <!--external-files-path  相当于 getExternalFilesDir("") -->
+    <external-files-path name="paly" path="freeSoft"/>
+    <!--external-cache-path  相当于 getExternalCacheDir（） -->
+<!--    <external-cache-path  name="lei" path="."/>-->
+    <root-path name="root_path" path="."/>
+</paths>
+
+<!--    files-path所代表的路径等于getFilesDir()，打印getFileDir( )它的路径是 /data/user/0/包名/files。什么意思呢，-->
+<!--<files-path name="my_images" path="images"/>的意思就是/data/user/0/包名/files + "/files-path标签中path的值/"路径下的文件是可共享的，-->
+<!--    在生成Uri时name的值my_images会替代上面的路径/data/user/0/包名/files / images /向外暴露。-->
+<!--    最终的Uri会是content : //com.example.admin.custmerviewapplication / my_images / test.jpg-->
+
+<!--    我们在代码中获取Uri的方法就是FileProvider.getUriForFile("上下文"，"清单文件中authorities的值"，"共享的文件")；-->
