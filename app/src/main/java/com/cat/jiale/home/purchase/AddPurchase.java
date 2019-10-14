@@ -59,6 +59,7 @@ public class AddPurchase extends AppCompatActivity {
         button=findViewById(R.id.img);
         sdCard=new SDCard();
         //点击拍照
+        //测试合并分支
         button.setOnClickListener(v -> {
             imgName=saveImageName();
             //大于android6.0
